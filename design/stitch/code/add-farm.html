@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Farm - AgriData Thailand</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#cbdbf5",
+                        "primary": "#003fb1",
+                        "secondary-fixed": "#85f8c4",
+                        "background": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "inverse-primary": "#b5c4ff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "tertiary": "#694100",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-container": "#895600",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#1353d8",
+                        "secondary-container": "#82f5c1",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary-container": "#ffd6a8",
+                        "on-secondary-fixed": "#002114",
+                        "inverse-surface": "#213145",
+                        "primary-container": "#1a56db",
+                        "on-surface-variant": "#434654",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-primary-container": "#d4dcff",
+                        "outline-variant": "#c3c5d7",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline": "#737686",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-background": "#0b1c30",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-fixed": "#00174d",
+                        "on-secondary-container": "#00714e",
+                        "on-primary-fixed-variant": "#003dab",
+                        "secondary": "#006c4a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "280px",
+                        "unit": "4px",
+                        "container-margin": "32px",
+                        "form-gap": "16px",
+                        "card-padding": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "title-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9ff;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- SideNavBar Shell -->
+<aside class="fixed h-full w-[280px] left-0 top-0 border-r bg-white border-gray-200 shadow-sm z-50 flex flex-col overflow-y-auto">
+<div class="p-6">
+<h1 class="text-lg font-bold text-blue-700 font-display-lg">AgriData Thailand</h1>
+<p class="text-xs text-gray-500 font-label-md mt-1">Informed Expert</p>
+</div>
+<nav class="flex-1 space-y-1 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope">Dashboard</span>
+</a>
+<!-- Farm Map Active for Map Verification Context -->
+<a class="flex items-center gap-3 px-4 py-3 text-blue-700 bg-blue-50/50 border-l-4 border-blue-700 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-manrope">Farm Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+<span class="font-manrope">Farm List</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope">Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto border-t border-gray-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a middle-aged asian agricultural expert in a white shirt with a neutral friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWhLgUycOB3IUhRbTqhv0_J6tjCryEK7K_tfjZu0xgDSxvXo-0r0erWgYBfSoRFUOPNJtQbytLrDEVwb9Qhm3iKygnJkHY3ny66UeXnn-rYxx2EnOUo-mbtWLAWm7rP1TyzbEvEHRtqlA7QXwT3gyXSsvTGrnYGr0MA8bpNcXp4YlS5ESttJ_K9TJrtgye70AB424G8g23J-fIF6vbXjrGUK85vqypgkj3rjSccLpO7W-HzUTjUzPYriMvbzjoWQF0xeTwbz9Igmrg"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Dr. Somsak P.</p>
+<p class="text-xs text-gray-500">Expert Advisor</p>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-200 flex justify-between items-center h-16 px-8 ml-[280px] max-w-[calc(100%-280px)]">
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 bg-gray-50 border-gray-200 rounded text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none" placeholder="Search facilities..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:text-blue-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:text-blue-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="bg-primary text-white px-4 py-2 rounded text-sm font-semibold hover:bg-blue-800 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                Add Farm
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] p-8 max-w-[1200px]">
+<div class="mb-8">
+<nav class="flex items-center gap-2 text-sm text-gray-500 mb-2 font-label-md">
+<a class="hover:text-primary" href="#">Farm List</a>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-semibold">Add New Farm Facility</span>
+</nav>
+<h2 class="font-headline-lg text-on-surface">Registration Portal</h2>
+<p class="text-gray-500 font-body-lg">Enter the geographical and structural details for the new agricultural unit.</p>
+</div>
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left Column: Form Sections -->
+<div class="col-span-12 lg:col-span-7 space-y-6">
+<!-- Section 1: General Information -->
+<div class="bg-white p-8 border border-gray-200 rounded shadow-sm">
+<div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+<span class="material-symbols-outlined text-primary" data-icon="info" data-weight="fill" style="font-variation-settings: 'FILL' 1;">info</span>
+<h3 class="font-title-lg text-on-surface">General Information</h3>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-on-surface mb-2">FARM NAME</label>
+<input class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none text-on-surface" placeholder="e.g. Northern Highlands Cooperative A1" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-3">LIVESTOCK &amp; ANIMAL TYPES</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center gap-3 p-3 border border-gray-200 rounded hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary/20 border-gray-300" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface">Poultry &amp; Avian</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-gray-200 rounded hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary/20 border-gray-300" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface">Bovine &amp; Cattle</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-gray-200 rounded hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary/20 border-gray-300" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface">Swine &amp; Porcine</span>
+</label>
+<label class="flex items-center gap-3 p-3 border border-gray-200 rounded hover:bg-surface-container-low cursor-pointer transition-colors group">
+<input class="w-5 h-5 rounded text-primary focus:ring-primary/20 border-gray-300" type="checkbox"/>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface">Aquaculture</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Location -->
+<div class="bg-white p-8 border border-gray-200 rounded shadow-sm">
+<div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+<span class="material-symbols-outlined text-primary" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h3 class="font-title-lg text-on-surface">Regional Location</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div>
+<label class="block font-label-md text-on-surface mb-2">PROVINCE</label>
+<select class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none appearance-none">
+<option>Select Province</option>
+<option>Chiang Mai</option>
+<option>Bangkok</option>
+<option>Phuket</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">DISTRICT</label>
+<select class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none appearance-none">
+<option>Select District</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">SUB-DISTRICT</label>
+<select class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none appearance-none">
+<option>Select Sub-district</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section 3: Coordinates -->
+<div class="bg-white p-8 border border-gray-200 rounded shadow-sm">
+<div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+<span class="material-symbols-outlined text-primary" data-icon="explore" data-weight="fill" style="font-variation-settings: 'FILL' 1;">explore</span>
+<h3 class="font-title-lg text-on-surface">Geospatial Coordinates</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<label class="block font-label-md text-on-surface mb-2">LATITUDE</label>
+<input class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none" placeholder="18.7883" type="text"/>
+<p class="mt-2 text-xs text-gray-500">Decimal degrees (WGS84). e.g. 18.7883</p>
+</div>
+<div>
+<label class="block font-label-md text-on-surface mb-2">LONGITUDE</label>
+<input class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-primary/10 focus:border-primary outline-none" placeholder="98.9853" type="text"/>
+<p class="mt-2 text-xs text-gray-500">Decimal degrees (WGS84). e.g. 98.9853</p>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-4 pt-4 pb-12">
+<button class="px-8 py-3 rounded font-semibold text-gray-600 hover:bg-gray-100 transition-all">
+                        Cancel
+                    </button>
+<button class="px-12 py-3 bg-primary text-white rounded font-bold shadow-lg shadow-blue-500/20 hover:bg-blue-800 transition-all active:scale-[0.98]">
+                        Save Farm Record
+                    </button>
+</div>
+</div>
+<!-- Right Column: Map Preview & Context -->
+<div class="col-span-12 lg:col-span-5 sticky top-24">
+<div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
+<div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+<span class="font-label-md text-on-surface">LOCATION VERIFICATION</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm" data-icon="zoom_in">zoom_in</span>
+</button>
+<button class="w-8 h-8 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm" data-icon="zoom_out">zoom_out</span>
+</button>
+</div>
+</div>
+<div class="relative aspect-square w-full bg-gray-100">
+<!-- Simulated Map View -->
+<img class="w-full h-full object-cover grayscale-[0.2] contrast-125" data-alt="satellite view of structured agricultural farmland with distinct green crop patterns and irrigation pathways in Thailand" data-location="Chiang Mai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8n95L6mHTUodc4om8N1GFnWiCV1OY3X0rNA45KpyAHjaDoDAnSuKLtpd9El9GNz91oJyIcHgliodNYiqFeRXCUli1F-s9N8AJGgyCoAD8kD4sNg7QkjopXVdVikBMVXTiyIAyWlezeO_KN8qVC0oxUoNuMYPjt6qgjhTvaboWNw5S3sZmbqyTm9St7ZJW4KD0oJ9c0NbLSI23zUPzqfcghnvLXHZaZzjnwqihycXLQAPfrOvZTgKlEg-zzhcvv92wN_NoLrddgIAF"/>
+<!-- Map Overlay elements -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">location_on</span>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-primary text-white text-[10px] px-2 py-1 rounded whitespace-nowrap font-bold shadow-lg">
+                                    VERIFIED POINT
+                                </div>
+</div>
+</div>
+<!-- Map HUD -->
+<div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur p-3 rounded shadow-lg border border-gray-200">
+<p class="text-[10px] text-gray-500 font-bold mb-1">CURRENT SELECTION</p>
+<p class="text-xs font-mono text-on-surface">18°47'17.9"N 98°59'07.1"E</p>
+</div>
+</div>
+<div class="p-6">
+<h4 class="font-title-lg text-on-surface mb-2">Coordinate Accuracy</h4>
+<p class="text-body-md text-gray-500 mb-4">Please ensure the pin is placed precisely within the farm's main administrative perimeter. This affects automated climate reporting.</p>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded border border-surface-variant">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+<div>
+<p class="text-xs font-bold text-on-secondary-container">GPS INTEGRITY CHECK</p>
+<p class="text-xs text-secondary">Signal strength within valid range for Northern Thailand.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Help -->
+<div class="mt-6 p-6 border-l-4 border-primary bg-primary/5 rounded-r">
+<h5 class="text-sm font-bold text-primary mb-1">Required Information</h5>
+<p class="text-xs text-gray-600">All fields marked with an asterisk or listed in the primary layout sections are mandatory for regulatory compliance with the National Agriculture Data Center.</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

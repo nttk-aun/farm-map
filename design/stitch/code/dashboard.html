@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#cbdbf5",
+                    "primary": "#003fb1",
+                    "secondary-fixed": "#85f8c4",
+                    "background": "#f8f9ff",
+                    "surface": "#f8f9ff",
+                    "inverse-primary": "#b5c4ff",
+                    "on-secondary-fixed-variant": "#005137",
+                    "tertiary": "#694100",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-container": "#895600",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#1353d8",
+                    "secondary-container": "#82f5c1",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary-container": "#ffd6a8",
+                    "on-secondary-fixed": "#002114",
+                    "inverse-surface": "#213145",
+                    "primary-container": "#1a56db",
+                    "on-surface-variant": "#434654",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-container": "#d4dcff",
+                    "outline-variant": "#c3c5d7",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#737686",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b5c4ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-background": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-fixed": "#00174d",
+                    "on-secondary-container": "#00714e",
+                    "on-primary-fixed-variant": "#003dab",
+                    "secondary": "#006c4a",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#68dba9",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sidebar-width": "280px",
+                    "unit": "4px",
+                    "container-margin": "32px",
+                    "form-gap": "16px",
+                    "card-padding": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "title-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "code-md": ["monospace"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "code-md": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .map-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 100%); }
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+        .chart-bar { transition: width 1s ease-in-out; }
+    </style>
+</head>
+<body class="text-on-background font-body-md text-body-md antialiased">
+<!-- SideNavBar -->
+<aside class="fixed h-full w-[280px] left-0 top-0 border-r border-gray-200 bg-white dark:bg-gray-900 shadow-sm flex flex-col z-50">
+<div class="p-6">
+<span class="text-lg font-bold text-blue-700 dark:text-blue-400">AgriData Thailand</span>
+<p class="text-xs text-gray-500 mt-1">Informed Expert</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 border-l-4 border-blue-700 hover:bg-gray-50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Farm Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+<span>Farm List</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-50 transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto border-t border-gray-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="professional portrait of an agricultural data scientist in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC679pawJsKtpyVbGGAlzGuyHgmaxuYJ9Edgbq2ADwc5Vau6JNMXH4j90nVDTOiRcLV15vy0SF2TdE20Bw8p2_NAyRkZrL33Yx_jZYrsc_w_1d4Uy9Ce7FdsPDgZ6etAh0kWQm_hzYqBG2z64h57epO1K16TIQBc_rxWk_fsUZR9GtI5vdP35sxzm1keBnaShdwb3OraM-2dcplvZ74pv9uFOCQ08_ubvNYZWBGZFqu0rvOsfS4Ay3a-ahspHbKpKLgYtq6n1q6iN2b"/>
+</div>
+<div>
+<p class="font-semibold text-sm">Dr. Somchai</p>
+<p class="text-xs text-gray-500">Lead Analyst</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="ml-[280px] min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-gray-200 h-16 flex justify-between items-center px-8 shadow-none">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 outline-none" placeholder="Search farms, provinces, or livestock..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-gray-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-gray-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<div class="h-8 w-px bg-gray-200"></div>
+<button class="bg-primary text-white px-5 py-2 rounded-xl font-semibold flex items-center gap-2 hover:bg-primary-container active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                    Add Farm
+                </button>
+</div>
+</header>
+<!-- Main Dashboard Canvas -->
+<main class="p-8 max-w-[1600px] mx-auto">
+<header class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Thailand Farm Dashboard</h1>
+<p class="text-on-surface-variant">Real-time agricultural distribution and soil health analytics across the kingdom.</p>
+</header>
+<!-- Summary Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Total Farms Card -->
+<div class="bg-white p-card-padding rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="text-label-md font-label-md text-outline uppercase tracking-wider mb-2">Total Farms</p>
+<h3 class="text-headline-md font-headline-md text-primary">150</h3>
+<div class="flex items-center gap-1 mt-2 text-secondary font-medium text-sm">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+<span>Active nationwide</span>
+</div>
+</div>
+<div class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="agriculture">agriculture</span>
+</div>
+</div>
+<!-- Growth Rate Card -->
+<div class="bg-white p-card-padding rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="text-label-md font-label-md text-outline uppercase tracking-wider mb-2">Growth Rate</p>
+<h3 class="text-headline-md font-headline-md text-secondary">+12.5%</h3>
+<div class="flex items-center gap-1 mt-2 text-secondary font-medium text-sm">
+<span class="material-symbols-outlined text-xs" data-icon="calendar_today">calendar_today</span>
+<span>Vs previous quarter</span>
+</div>
+</div>
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="show_chart">show_chart</span>
+</div>
+</div>
+<!-- Soil Health Index Card -->
+<div class="bg-white p-card-padding rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="text-label-md font-label-md text-outline uppercase tracking-wider mb-2">Soil Health Index</p>
+<h3 class="text-headline-md font-headline-md text-tertiary">88.4</h3>
+<div class="flex items-center gap-1 mt-2 text-tertiary font-medium text-sm">
+<span class="material-symbols-outlined text-xs" data-icon="eco">eco</span>
+<span>Average composite score</span>
+</div>
+</div>
+<div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
+</div>
+</div>
+</section>
+<!-- Main Analytics Section -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Section 1: Top 10 Provinces Bar Chart/List -->
+<div class="col-span-12 lg:col-span-5 bg-white rounded-xl border border-outline-variant shadow-sm flex flex-col">
+<div class="p-6 border-b border-gray-100 flex justify-between items-center">
+<h2 class="font-title-lg text-title-lg">Regional Distribution</h2>
+<button class="text-gray-400 hover:text-gray-600"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</div>
+<div class="p-6 flex-1">
+<p class="text-sm text-gray-500 mb-6">Top 10 Provinces by Registered Farms</p>
+<div class="space-y-5">
+<!-- Chiang Mai -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-on-surface">Chiang Mai</span>
+<span class="font-bold text-primary">28</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Khon Kaen -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-on-surface">Khon Kaen</span>
+<span class="font-bold text-primary">22</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar" style="width: 68%;"></div>
+</div>
+</div>
+<!-- Nakhon Ratchasima -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-on-surface">Nakhon Ratchasima</span>
+<span class="font-bold text-primary">19</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar" style="width: 58%;"></div>
+</div>
+</div>
+<!-- Surat Thani -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-on-surface">Surat Thani</span>
+<span class="font-bold text-primary">15</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Ubon Ratchathani -->
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="font-medium text-on-surface">Ubon Ratchathani</span>
+<span class="font-bold text-primary">12</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full chart-bar" style="width: 38%;"></div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 text-sm font-semibold text-primary border border-primary-fixed rounded-xl hover:bg-primary/5 transition-colors">
+                            View Full Ranking
+                        </button>
+</div>
+</div>
+<!-- Section 2: Farm distribution by animal type table -->
+<div class="col-span-12 lg:col-span-7 space-y-8">
+<!-- Map Preview Card -->
+<div class="relative h-[300px] rounded-xl overflow-hidden shadow-sm border border-outline-variant group">
+<img class="w-full h-full object-cover" data-alt="vibrant aerial view of geometric agricultural fields in Thailand with lush green rice paddies and irrigation canals" data-location="Thailand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKWWiAK7SR0jV5nbwASYT6Qje_FWiMzdPNuO0fuokwNflkx7o0etNy25QLRGQbapNDLrprSBO-DOz_Og9M8Y54EEyUkQSt3UwzNLzFRgSW2moERAc9qVOqCliOPYTE5-k-dCJMdLovsDHExiCEsNqW0frYh96K1ocBd1XMMQT03wnd8ofYACpjkTTq2H1oV9iK7YYC7zmS5A89MnGlvMbfwkAdYAyAJ6UllRqU4_wdUrFuMeXPr1ZLRtgvok4Q7wJGl3SLjjk3d6WW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+<h3 class="text-white text-headline-md font-headline-md">Live Field Connectivity</h3>
+<p class="text-white/80 text-body-md">Monitoring 150 stations across 76 provinces</p>
+</div>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-white/90 backdrop-blur p-2 rounded-lg shadow-lg hover:bg-white transition-colors"><span class="material-symbols-outlined" data-icon="zoom_in">zoom_in</span></button>
+<button class="bg-white/90 backdrop-blur p-2 rounded-lg shadow-lg hover:bg-white transition-colors"><span class="material-symbols-outlined" data-icon="zoom_out">zoom_out</span></button>
+<button class="bg-white/90 backdrop-blur p-2 rounded-lg shadow-lg hover:bg-white transition-colors"><span class="material-symbols-outlined" data-icon="layers">layers</span></button>
+</div>
+</div>
+<!-- Livestock Distribution Table -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-gray-100">
+<h2 class="font-title-lg text-title-lg">Livestock Distribution</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-outline uppercase tracking-wider">Animal Type</th>
+<th class="px-6 py-4 font-label-md text-label-md text-outline uppercase tracking-wider text-right">Count</th>
+<th class="px-6 py-4 font-label-md text-label-md text-outline uppercase tracking-wider text-right">Share (%)</th>
+<th class="px-6 py-4 font-label-md text-label-md text-outline uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-orange-50 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined" data-icon="herd_summary">summarize</span>
+</div>
+<span class="font-medium">Cattle</span>
+</td>
+<td class="px-6 py-4 text-right font-semibold">4,280</td>
+<td class="px-6 py-4 text-right text-gray-500">42%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Stable</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-blue-50 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined" data-icon="set_meal">set_meal</span>
+</div>
+<span class="font-medium">Fishery</span>
+</td>
+<td class="px-6 py-4 text-right font-semibold">2,915</td>
+<td class="px-6 py-4 text-right text-gray-500">28%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Increasing</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-yellow-50 flex items-center justify-center text-yellow-600">
+<span class="material-symbols-outlined" data-icon="egg">egg</span>
+</div>
+<span class="font-medium">Poultry</span>
+</td>
+<td class="px-6 py-4 text-right font-semibold">1,840</td>
+<td class="px-6 py-4 text-right text-gray-500">18%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Stable</span>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-pink-50 flex items-center justify-center text-pink-600">
+<span class="material-symbols-outlined" data-icon="piggy_bank">money_bag</span>
+</div>
+<span class="font-medium">Swine</span>
+</td>
+<td class="px-6 py-4 text-right font-semibold">1,215</td>
+<td class="px-6 py-4 text-right text-gray-500">12%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Decreasing</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
