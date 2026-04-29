@@ -1,4 +1,9 @@
-import AddFarmForm from '@/components/AddFarmForm';
+import dynamic from 'next/dynamic';
+
+const AddFarmForm = dynamic(() => import('@/components/AddFarmForm'), {
+  ssr: false,
+  loading: () => <div style={{ padding: 16 }}>กำลังโหลดหน้าเพิ่มข้อมูลฟาร์ม...</div>,
+});
 
 export default function AddFarmPage() {
   try {
