@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
 
 const items = [
   { href: '/farm-map', label: 'แผนที่' },
@@ -13,9 +14,21 @@ const items = [
 export default function FarmNavTabs() {
   try {
     const pathname = usePathname();
+    const { data: session } = useSession();
+    const isAdmin = session?.user?.role === 'admin';
+    const visibleItems = isAdmin ? items : items.filter((item) => item.href !== '/farm-map/add');
+
+    const handleSignOut = async () => {
+      try {
+        await signOut({ callbackUrl: '/farm-map' });
+      } catch (error) {
+        console.error('handleSignOut error:', error);
+      }
+    };
+
     return (
       <div className="ui-nav-tabs">
-        {items.map((item) => {
+        {visibleItems.map((item) => {
           const isActive =
             pathname === item.href ||
             (item.href === '/farm-map/list' && pathname?.startsWith('/farm-map/edit'));
@@ -25,6 +38,15 @@ export default function FarmNavTabs() {
             </Link>
           );
         })}
+        {isAdmin ? (
+          <button type="button" className="ui-btn ui-btn-secondary" onClick={handleSignOut}>
+            ออกจากระบบ ({session?.user?.username || 'admin'})
+          </button>
+        ) : (
+          <Link href="/login" className={`ui-nav-link ${pathname === '/login' ? 'active' : ''}`}>
+            เข้าสู่ระบบแอดมิน
+          </Link>
+        )}
       </div>
     );
   } catch (error) {

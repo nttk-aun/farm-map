@@ -2,10 +2,13 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import FarmNavTabs from '@/components/ui/FarmNavTabs';
 
 export default function FarmList() {
 const defaultFilters = { name: '', provinceText: '', districtText: '', animalText: '' };
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === 'admin';
   const [filters, setFilters] = useState({
     ...defaultFilters,
   });
@@ -302,16 +305,22 @@ const defaultFilters = { name: '', provinceText: '', districtText: '', animalTex
                   {Array.isArray(item.animal_labels) ? item.animal_labels.join(', ') : '-'}
                 </td>
                 <td>
-                  <Link href={`/farm-map/edit/${item.id}`} style={{ marginRight: 8, fontWeight: 700 }}>
-                    แก้ไข
-                  </Link>
-                  <button
-                    className="ui-btn ui-btn-danger"
-                    type="button"
-                    onClick={() => handleDeleteFarm(item.id, item.name)}
-                  >
-                    ลบ
-                  </button>
+                  {isAdmin ? (
+                    <>
+                      <Link href={`/farm-map/edit/${item.id}`} style={{ marginRight: 8, fontWeight: 700 }}>
+                        แก้ไข
+                      </Link>
+                      <button
+                        className="ui-btn ui-btn-danger"
+                        type="button"
+                        onClick={() => handleDeleteFarm(item.id, item.name)}
+                      >
+                        ลบ
+                      </button>
+                    </>
+                  ) : (
+                    <span style={{ color: 'var(--text-muted)' }}>ดูอย่างเดียว</span>
+                  )}
                 </td>
               </tr>
             ))}
