@@ -11,11 +11,22 @@ const items = [
   { href: '/farm-map/dashboard', label: 'Dashboard' },
 ];
 
+function isAdminRole(role) {
+  try {
+    return String(role || '')
+      .trim()
+      .toLowerCase() === 'admin';
+  } catch (error) {
+    console.error('isAdminRole error:', error);
+    return false;
+  }
+}
+
 export default function FarmNavTabs() {
   try {
     const pathname = usePathname();
     const { data: session } = useSession();
-    const isAdmin = session?.user?.role === 'admin';
+    const isAdmin = isAdminRole(session?.user?.role);
     const visibleItems = isAdmin ? items : items.filter((item) => item.href !== '/farm-map/add');
 
     const handleSignOut = async () => {

@@ -4,6 +4,29 @@ import { getToken } from 'next-auth/jwt';
 const ADMIN_ONLY_PAGE_PATHS = ['/farm-map/add', '/farm-map/edit'];
 const AUTH_WRITE_API_PREFIX = '/api/farms';
 
+function resolveAuthSecret() {
+  try {
+    if (process.env.NEXTAUTH_SECRET) {
+      return process.env.NEXTAUTH_SECRET;
+    }
+    return process.env.DATABASE_URL || 'temporary-insecure-auth-secret';
+  } catch (error) {
+    console.error('resolveAuthSecret error:', error);
+    return 'temporary-insecure-auth-secret';
+  }
+}
+
+function isAdminRole(role) {
+  try {
+    return String(role || '')
+      .trim()
+      .toLowerCase() === 'admin';
+  } catch (error) {
+    console.error('isAdminRole error:', error);
+    return false;
+  }
+}
+
 function isAdminOnlyPage(pathname) {
   try {
     return ADMIN_ONLY_PAGE_PATHS.some((path) => pathname.startsWith(path));
@@ -36,6 +59,15 @@ function redirectToLogin(request) {
   }
 }
 
+function redirectToFarmMap(request) {
+  try {
+    return NextResponse.redirect(new URL('/farm-map', request.url));
+  } catch (error) {
+    console.error('redirectToFarmMap error:', error);
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+}
+
 export async function middleware(request) {
   try {
     const pathname = request.nextUrl.pathname;
@@ -47,8 +79,8 @@ export async function middleware(request) {
       return NextResponse.next();
     }
 
-    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-    const isAdmin = token?.role === 'admin';
+    const token = await getToken({ req: request, secret: resolveAuthSecret() });
+    const isAdmin = isAdminRole(token?.role);
 
     if (isAdmin) {
       return NextResponse.next();
@@ -56,6 +88,9 @@ export async function middleware(request) {
 
     if (needAdminWriteApi) {
       return NextResponse.json({ message: 'เฉพาะแอดมินเท่านั้นที่แก้ไขข้อมูลได้' }, { status: 403 });
+    }
+    if (token) {
+      return redirectToFarmMap(request);
     }
     return redirectToLogin(request);
   } catch (error) {

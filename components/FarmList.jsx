@@ -5,10 +5,21 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import FarmNavTabs from '@/components/ui/FarmNavTabs';
 
+function isAdminRole(role) {
+  try {
+    return String(role || '')
+      .trim()
+      .toLowerCase() === 'admin';
+  } catch (error) {
+    console.error('isAdminRole error:', error);
+    return false;
+  }
+}
+
 export default function FarmList() {
 const defaultFilters = { name: '', provinceText: '', districtText: '', animalText: '' };
   const { data: session } = useSession();
-  const isAdmin = session?.user?.role === 'admin';
+  const isAdmin = isAdminRole(session?.user?.role);
   const [filters, setFilters] = useState({
     ...defaultFilters,
   });

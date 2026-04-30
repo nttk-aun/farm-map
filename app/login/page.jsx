@@ -19,6 +19,17 @@ function getSafeCallbackUrl(rawCallbackUrl) {
   }
 }
 
+function isAdminRole(role) {
+  try {
+    return String(role || '')
+      .trim()
+      .toLowerCase() === 'admin';
+  } catch (error) {
+    console.error('isAdminRole error:', error);
+    return false;
+  }
+}
+
 export default function LoginPage() {
   try {
     const router = useRouter();
@@ -31,7 +42,7 @@ export default function LoginPage() {
 
     useEffect(() => {
       try {
-        if (status === 'authenticated' && session?.user?.role === 'admin') {
+        if (status === 'authenticated' && isAdminRole(session?.user?.role)) {
           router.replace(callbackUrl || '/farm-map');
         }
       } catch (error) {
